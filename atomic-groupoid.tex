@@ -1,0 +1,477 @@
+\begin{filecontents*}{refs.bib}
+@article{BBFVW,
+  title={Embeddings of von Neumann algebras into uniform Roe algebras and quasi-local algebras},
+  author={Baudier, Florent P and Braga, Bruno M and Farah, Ilijas and Vignati, Alessandro and Willett, Rufus},
+  journal={Journal of Functional Analysis},
+  volume={286},
+  number={3},
+  pages={110186},
+  year={2024},
+  publisher={Elsevier}
+}
+@article{Ozawa2023,
+  title={Embeddings of matrix algebras into uniform Roe algebras and quasi local algebras},
+  author={Ozawa, Narutaka},
+  journal={arXiv preprint arXiv:2310.03677},
+  year={2023}
+}
+@book{Sakai1971,
+  title={$C^*$-algebras and $W^*$-algebras},
+  author={Sakai, Sh{\^o}ichir{\^o}},
+  year={1971},
+  publisher={Springer-Verlag}
+}
+@book{TakesakiI,
+  title={Theory of operator algebras. {I}},
+  author={Takesaki, Masamichi},
+  series={Encyclopaedia of Mathematical Sciences},
+  volume={124},
+  year={2002},
+  publisher={Springer-Verlag, Berlin}
+}
+@book{Renault1980,
+  title={A groupoid approach to $C^*$-algebras},
+  author={Renault, Jean},
+  series={Lecture Notes in Mathematics},
+  volume={793},
+  year={1980},
+  publisher={Springer, Berlin}
+}
+@article{Renault2008,
+  title={Cartan subalgebras in $C^*$-algebras},
+  author={Renault, Jean},
+  journal={Irish Math. Soc. Bull.},
+  volume={61},
+  pages={29--63},
+  year={2008}
+}
+@article{Kumjian1986,
+  title={On $C^*$-diagonals},
+  author={Kumjian, Alexander},
+  journal={Canad. J. Math.},
+  volume={38},
+  number={4},
+  pages={969--1008},
+  year={1986}
+}
+@article{Raad22,
+  title={A generalization of Renault's theorem for Cartan subalgebras},
+  author={Raad, Ali I.},
+  journal={Proc. Amer. Math. Soc.},
+  volume={150},
+  number={11},
+  pages={4801--4809},
+  year={2022}
+}
+\end{filecontents*}
+
+\documentclass{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage{comment}
+\usepackage{mathrsfs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\C}{\mathbb C}
+\newcommand{\T}{\mathbb T}
+\newcommand{\B}{\mathcal B}
+\newcommand{\K}{\mathcal K}
+\newcommand{\supp}{\mathrm{supp}}
+\renewcommand{\span}{\mathrm{span}}
+\newcommand{\dist}{\mathrm{dist}}
+
+\title{Atomic von Neumann Algebras and Groupoid $C^*$-Algebras}
+
+
+\author[Alcides Buss]{Alcides Buss}
+\address[Alcides Buss]{Departamento de Matem\'atica, Universidade Federal de Santa Catarina, 88.040-900
+Florian\'opolis-SC, Brazil}
+	\email{alcides.buss@ufsc.br}
+	\urladdr{http://mtm.ufsc.br/~alcides/}
+
+\author[Luiz F. Garcia]{Luiz Felipe Garcia}
+\address[Luiz F. Garcia]{Departamento de Matem\'atica, Universidade Federal de Santa Catarina, 88.040-900
+Florian\'opolis-SC, Brazil}
+	\email{lfgarcia98@gmail.com}
+
+\author[Tomás Pacheco]{Tomás Pacheco}
+\address[Tomás Pacheco]{Center for Mathematical Analysis, Geometry and Dynamical Systems,
+Department of Mathematics, Instituto Superior T\'ecnico, University of Lisbon,
+Av. Rovisco Pais 1, 1049-001 Lisboa, Portugal}
+	\email{tomas.pacheco@tecnico.ulisboa.pt}
+
+\keywords{Twisted groupoid $C^*$-algebras, conditional expectations, atomic von Neumann algebras, étale groupoids}
+\subjclass[2020]{Primary 46L05, 22A22; Secondary 46L10, 43A65}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We characterize atomic von Neumann algebras that arise as reduced $C^*$-algebras of locally compact Hausdorff étale groupoids (possibly twisted). We show that such a realization exists if and only if the central type I fiber dimensions of the algebra are uniformly bounded. The obstruction in the unbounded case is analytic and structural: we prove a dichotomy showing that unbounded fibers either force a violation of the uniformly finite propagation of compactly supported groupoid sections, or they enforce an unbounded growth of type I factors inside discrete group $C^*$-algebras, which is incompatible with their canonical tracial states.
+\end{abstract}
+
+\section{Introduction}
+
+Groupoid $C^*$-algebras provide a flexible framework to encode operator algebras arising from dynamical and geometric data. Since the foundational work of Renault~\cite{Renault1980}, they have played a central role in the study of Cartan subalgebras~\cite{Renault2008,Raad22}, diagonals in the sense of Kumjian~\cite{Kumjian1986}, and the interplay between topology and operator algebras.
+
+A natural question in this context is to understand which von Neumann algebras can arise as groupoid $C^*$-algebras. In this paper, we focus on the class of atomic von Neumann algebras. Such algebras admit a canonical decomposition as direct products of type I factors (see, e.g.,~\cite{Sakai1971,TakesakiI}),
+\[
+M \cong \prod_{z} B(K_z),
+\]
+and may be viewed as noncommutative analogues of extremely disconnected spaces.
+
+At first glance, atomic von Neumann algebras appear to be well suited for a groupoid description. Indeed, if $M \cong C_r^*(G,\Sigma)$ for an étale groupoid, then $M$ admits a canonical abelian subalgebra $C_0(G^{(0)})$ together with a faithful conditional expectation. When $G^{(0)}$ is a compact extremely disconnected space, this subalgebra is atomic, suggesting a close connection with the general structure of atomic von Neumann algebras.
+
+However, we show that a strong rigidity phenomenon occurs: not every atomic von Neumann algebra arises from a groupoid. The obstruction is governed by a simple and intrinsic invariant.
+
+\medskip
+
+Given an atomic von Neumann algebra
+\[
+M \cong \prod_{z \in Z} B(K_z),
+\]
+we define
+\[
+n(M) := \sup_{z \in Z} \dim(K_z),
+\]
+which measures the maximal type I multiplicity appearing in the central decomposition. We say that $M$ has \emph{uniformly bounded multiplicity} if $n(M) < \infty$.
+
+Our main result is the following.
+
+\begin{theorem}
+Let $M$ be an atomic von Neumann algebra. The following are equivalent:
+\begin{enumerate}
+\item $M \cong C_r^*(G,\Sigma)$ for some locally compact Hausdorff étale groupoid $G$;
+\item $n(M) < \infty$.
+\end{enumerate}
+
+Moreover, if $n(M) < \infty$, then $M$ is isomorphic to $C_r^*(G)$ for a principal, compact, Hausdorff, étale groupoid $G$ with trivial twist, whose unit space is extremely disconnected.
+\end{theorem}
+
+\medskip
+
+The proof relies on an interplay between the internal structure of the central blocks of $M$ and the spatial decomposition induced by the unit space of the groupoid. On the one hand, we show that groupoid $C^*$-algebras are generated by operators whose length and spatial propagation are strictly bounded by the number of bisections covering their compact supports. On the other hand, if the multiplicities $\dim(K_z)$ are unbounded, we establish a dichotomy: either these large blocks spread across infinitely many points in the unit space (violating the block-sparsity of finite propagation elements), or they concentrate inside isolated isotropy groups. In the latter case, the presence of arbitrarily large matrix algebras inside the $C^*$-algebra of a discrete group yields a quantitative contradiction with the norm inequalities governing the canonical faithful trace.
+
+\medskip
+
+Our results are closely related to recent developments concerning uniform Roe algebras. 
+It was shown in \cite{BBFVW} that a von Neumann algebra embeds into a uniform Roe algebra $C_u^*(X)$ of a uniformly locally finite metric space $X$ only if it is of the form
+$M \cong \prod_k M_{n_k}$ with $\sup_k n_k < \infty$. In view of our main theorem, this condition is exactly equivalent to the finiteness of the invariant $n(M)$. 
+
+On the other hand, Ozawa \cite{Ozawa2023} showed that the algebra $\prod_{n \in \mathbb{N}} M_n(\mathbb{C})$ does not embed into any uniform Roe algebra, but does embed into a quasi-local algebra. Our obstruction result confirms that such algebras cannot be generated by operators with uniformly finite propagation, highlighting a common ``finite propagation'' constraint underlying both groupoid $C^*$-algebras and uniform Roe algebras.
+
+\medskip
+
+The paper is organized as follows. In Section~2 we establish the relation between the atomic central decomposition of $M$ and its abelian diagonal. Section~3 introduces the invariant $n(M)$. In Section~4, we formalize the notion of $L$-bisection support for groupoid elements. Section~5 constitutes the core of the paper, establishing the dichotomy obstruction for unbounded atomic algebras. The main theorem is proved in Section~6, and examples are discussed in the final section.
+
+\section{Atomic decompositions}
+
+Let $M \subseteq B(H)$ be a von Neumann algebra admitting a faithful conditional expectation
+\[
+E : M \to A,
+\]
+where $A \subseteq M$ is an abelian von Neumann subalgebra.
+
+\begin{lemma}\label{lem:atomic_subalgebra}
+Let $M$ be an atomic von Neumann algebra. If $A \subseteq M$ is an abelian von Neumann subalgebra admitting a faithful conditional expectation $E : M \to A$, then $A$ is atomic.
+\end{lemma}
+
+\begin{proof}
+Let $0 \neq q \in A$ be a projection. To show that $A$ is atomic, it suffices to show that $q$ dominates a minimal projection of $A$.
+Since $M$ is atomic, there exists a minimal projection $p \in M$ such that $p \leq q$.
+Because $E$ is faithful and $p \neq 0$, we have $E(p) \neq 0$. Furthermore,
+\[
+0 \leq E(p) \leq E(q) = q.
+\]
+Let $e := s(E(p)) \in A$ be the support projection of $E(p)$. Then $e \neq 0$ and $e \leq q$. We will show that the corner algebra $Ae$ must contain a minimal projection.
+
+First, observe that $p \leq e$. Indeed, $E((1-e)p(1-e)) = (1-e)E(p)(1-e) = 0$ since $A$ is abelian and $e$ is the support of $E(p)$. Because $E$ is faithful and $(1-e)p(1-e) \ge 0$, this implies $(1-e)p(1-e) = 0$, which yields $(1-e)p = 0$ and thus $p \leq e$. Consequently, $pep = p$.
+
+For any projection $f \in A$ with $f \leq e$, consider the element $pfp \in M$. Since $p$ is a minimal projection in $M$, we have $pMp = \mathbb{C}p$. Since $f$ is positive and $f \le 1$, we must have $pfp = \lambda_f p$ for some scalar $\lambda_f \in [0,1]$.
+Notice that the map $f \mapsto \lambda_f$ defines a strictly positive normal probability measure on the projections of $Ae$. Indeed, if $f_1, f_2 \leq e$ are orthogonal projections, then $p(f_1 + f_2)p = pf_1p + pf_2p$, which implies $\lambda_{f_1+f_2} = \lambda_{f_1} + \lambda_{f_2}$. Also, $\lambda_e = 1$ because $pep = p$.
+
+On the other hand, the element $fpf$ is positive and belongs to $M$. Since $p$ is minimal, $fpf$ has rank at most $1$, meaning its only possible non-zero eigenvalue in the spectrum of $M$ is $\|fpf\| = \|pfp\| = \lambda_f$. This implies the operator inequality $fpf \leq \lambda_f f$.
+Applying the positive conditional expectation $E$ to both sides, and using $A$-bimodularity ($E(fpf) = fE(p)f = fE(p)$ since $A$ is abelian), we obtain:
+\[
+f E(p) \leq \lambda_f f.
+\]
+
+Now, assume towards a contradiction that $Ae$ has no minimal projections (i.e., $Ae$ is diffuse). Then the measure $\lambda$ is non-atomic. Given any $\varepsilon > 0$, we can partition $e = \sum_{i=1}^n f_i$ into mutually orthogonal projections in $A$ such that $\lambda_{f_i} < \varepsilon$ for all $i$.
+Summing the inequalities $f_i E(p) \leq \lambda_{f_i} f_i$ over all $i$, we get:
+\[
+E(p) = e E(p) = \sum_{i=1}^n f_i E(p) \leq \sum_{i=1}^n \lambda_{f_i} f_i < \varepsilon \sum_{i=1}^n f_i = \varepsilon e.
+\]
+Since this holds for every $\varepsilon > 0$, it forces $E(p) = 0$, which contradicts the faithfulness of $E$.
+
+Therefore, the assumption that $Ae$ is diffuse must be false, meaning $Ae$ must contain at least one minimal projection $f$. Since $f \leq e \leq q$, the arbitrary projection $q$ dominates a minimal projection in $A$, concluding the proof that $A$ is atomic.
+\end{proof}
+
+
+\begin{remark}
+The converse of the previous lemma does not hold in general: a diffuse von Neumann algebra may admit conditional expectations onto atomic subalgebras. For instance, $L^\infty([0,1])$ admits a faithful conditional expectation onto $\mathbb{C}$.
+\end{remark}
+
+\section{An intrinsic invariant}
+
+\begin{definition}
+Let $M$ be an atomic von Neumann algebra. Let
+\[
+M \cong \prod_{z \in Z} B(K_z)
+\]
+be its central decomposition into type I factors. We define the intrinsic invariant
+\[
+n(M) := \sup_{z \in Z} \dim(K_z).
+\]
+We say that $M$ has \emph{uniformly bounded multiplicity} if $n(M) < \infty$.
+\end{definition}
+
+Assume now that $A \subseteq M$ is an atomic abelian von Neumann subalgebra with minimal projections $(p_x)_{x \in X}$. 
+Let $(c_z)_{z \in Z}$ be the minimal central projections of $M$, corresponding to the identity operators of the blocks $B(K_z)$. Since $\sum_{x \in X} p_x = 1$, we have for each central block the orthogonal decomposition:
+\[
+c_z = \sum_{x \in X} c_z p_x.
+\]
+
+For each $z \in Z$, we define its \emph{transverse support} over the atomic diagonal $X$ as:
+\[
+X_z := \{ x \in X \mid c_z p_x \neq 0 \}.
+\]
+Notice that $E_{z,x} := c_z p_x K_z$ is exactly the range of the projection $c_z p_x$ acting on the representation space $K_z$. Consequently, we obtain the fundamental dimension formula for each block:
+\begin{equation}\label{eq:dimension_formula}
+\dim(K_z) = \sum_{x \in X_z} \dim(E_{z,x}).
+\end{equation}
+
+\section{Groupoid origin and Bisections}
+
+Suppose that $M \cong C_r^*(G,\Sigma)$ for an étale groupoid $G$ with twist $\Sigma$. Then $M$ admits a canonical abelian von Neumann subalgebra $A = C_0(G^{(0)})$ and a faithful conditional expectation $E : M \to A$. By Lemma~\ref{lem:atomic_subalgebra}, $A$ is atomic, and we may identify $G^{(0)}$ with the Stone--\v{C}ech compactification $\beta X$ of the discrete set $X$ of isolated units. 
+
+The Hilbert space $H$ of the representation decomposes as
+\[
+H = \bigoplus_{x \in X} H_x, \quad H_x := p_x H.
+\]
+
+Every section $f \in C_c(G,\Sigma)$ is supported on a compact set $K \subseteq G$, which can be covered by a finite number of open bisections. 
+
+\begin{definition}
+For $L \in \N$, we say that an operator $T \in M$ has \emph{$L$-bisection support} if there exists $f \in C_c(G,\Sigma)$ such that $T = T_f$ and $\supp(f)$ is covered by at most $L$ open bisections. We denote the set of such operators by $C^{(L)}(G,\Sigma)$.
+\end{definition}
+
+\begin{lemma}\label{lem:L_bisection_properties}
+Let $T_f \in C^{(L)}(G,\Sigma)$. Then:
+\begin{enumerate}
+    \item \textbf{Transverse Sparsity:} For each $x \in X$, there are at most $L$ indices $y \in X$ such that $p_y T_f p_x \neq 0$, and at most $L$ indices $w \in X$ such that $p_x T_f p_w \neq 0$.
+    \item \textbf{Isotropy Sparsity:} For each $x \in X$, the corner operator $p_x T_f p_x \in B(H_x)$ belongs to the subalgebra $p_x M p_x \cong C_r^*(G_x^x, \Sigma_x)$, and corresponds to a linear combination of at most $L$ canonical unitaries of the discrete group $G_x^x$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Since $f$ is supported on a compact set $K \subseteq \bigcup_{i=1}^L U_i$ where each $U_i$ is a bisection, the restriction of the source and range maps to each $U_i$ is injective. Thus, the fiber $K \cap s^{-1}(x)$ has cardinality at most $L$. This bounds the number of possible range elements $y = r(\gamma)$, proving (1). Furthermore, the intersection $K \cap G_x^x$ contains at most $L$ elements, implying that the restriction of $f$ to the isotropy group $G_x^x$ is a function with support of size at most $L$. Since $p_x T_f p_x$ is precisely the operator generated by $f|_{G_x^x}$, statement (2) follows.
+\end{proof}
+
+\section{The Obstruction Dichotomy}
+
+\begin{theorem}\label{thm:obstruction}
+Let $(G,\Sigma)$ be a twisted locally compact Hausdorff étale groupoid. 
+If $M = C_r^*(G,\Sigma)$ is an atomic von Neumann algebra, then 
+\[
+n(M) = \sup_{z \in Z} \dim(K_z) < \infty.
+\]
+\end{theorem}
+
+\begin{proof}
+We fix a faithful nondegenerate representation of $M$ on a Hilbert space $H$, so that $M \subseteq B(H)$ and $C_c(G,\Sigma)$ is norm-dense in $M$. Let $A = C_0(G^{(0)}) \subseteq M$ be the diagonal subalgebra, and let $(p_x)_{x \in X}$ be its family of minimal projections, giving $H = \bigoplus_{x \in X} H_x$, where $H_x = p_x H$. We also fix the central decomposition $M \cong \prod_{z \in Z} B(K_z)$.
+
+Assume, towards a contradiction, that $n(M) = \sup_{z \in Z} \dim(K_z) = \infty$. 
+This unboundedness can occur in exactly two ways: either there exists at least one central block of infinite dimension, or all central blocks are finite-dimensional but there exists a sequence of distinct blocks whose dimensions grow arbitrarily large. We treat these two scenarios separately.
+
+\medskip
+\noindent
+\textbf{Scenario I: There exists an infinite-dimensional block.} \\
+Suppose there is $z_0 \in Z$ such that $\dim(K_{z_0}) = \infty$. By the dimension formula, we have $\sum_{x \in X_{z_0}} \dim(E_{z_0,x}) = \infty$. 
+Depending on the transverse support $X_{z_0}$, we have two subcases:
+
+\begin{itemize}
+    \item \textbf{Subcase I.a ($X_{z_0}$ is finite):} Since the infinite sum is distributed over finitely many points, the Pigeonhole Principle implies there exists at least one $x_0 \in X_{z_0}$ such that $\dim(E_{z_0, x_0}) = \infty$. 
+    The projection $q := c_{z_0} p_{x_0}$ is a non-zero element inside the corner von Neumann algebra $p_{x_0} M p_{x_0} \cong C_r^*(G_{x_0}^{x_0}, \Sigma_{x_0})$. This corner is the reduced twisted $C^*$-algebra of a discrete group, which always admits a canonical faithful normal tracial state $\tau$. 
+    Because $\tau$ is faithful and $q \neq 0$, we must have $\tau(q) > 0$. 
+    On the other hand, the sub-corner $q (p_{x_0} M p_{x_0}) q$ is exactly the block $B(E_{z_0, x_0})$. Restricting and normalizing $\tau$ on this sub-corner defines a finite faithful trace on $B(E_{z_0, x_0})$. However, it is a standard fact that $B(E_{z_0, x_0})$ cannot admit a finite faithful trace since $\dim(E_{z_0, x_0}) = \infty$. This yields an immediate contradiction.
+    
+    \item \textbf{Subcase I.b ($X_{z_0}$ is infinite):} We can choose a sequence of mutually disjoint finite subsets $F_m \subset X_{z_0}$ such that $|F_m| = m$. For each $m$, pick a base point $y_m \in F_m$ and select a unit vector $\eta_{m,x}$ in the corresponding fiber $E_{z_0, x} = p_x K_{z_0}$ for all $x \in F_m$. Because distinct points in $X$ correspond to mutually orthogonal projections $p_x$, the vectors $\{\eta_{m,x}\}_{x \in F_m}$ are automatically pairwise orthogonal. We define the superposed unit vector $\xi_m = \frac{1}{\sqrt{m}} \sum_{x \in F_m} \eta_{m,x}$ and the rank-one partial isometry $T_m = |\xi_m\rangle\langle\eta_{m,y_m}|$. Since the sets $F_m$ are mutually disjoint, the operators $T_m$ act on mutually orthogonal subspaces within the single block $K_{z_0}$. 
+    Defining $T = \bigoplus_m T_m \in B(K_{z_0}) \subset M$, we construct an operator that spreads a single fiber over $m$ distinct transverse points. 
+    If $T$ could be approximated by some $T_f \in C^{(L)}(G,\Sigma)$ supported on $L$ bisections, the vector $T_f \eta_{m,y_m}$ would be supported on at most $L$ orthogonal fibers $H_x$. The orthogonal projection of $T \eta_{m,y_m} = \xi_m$ onto any such $L$-dimensional span has norm squared at most $L/m$. Thus, $\|(T - T_f)\eta_{m,y_m}\| \ge 1 - \sqrt{L/m}$. As $m \to \infty$, this forces $\|T - T_f\| \ge 1$, contradicting the uniform finite propagation of groupoid elements.
+\end{itemize}
+
+\medskip
+\noindent
+\textbf{Scenario II: There is a sequence of distinct unbounded finite-dimensional blocks.} \\
+Suppose $\dim(K_z) < \infty$ for all $z \in Z$, but we can choose a sequence of distinct central blocks $(z_n)_{n \in \N}$ such that $\dim(K_{z_n}) \ge n$.
+
+We establish a dichotomy based on the dispersion of these blocks across the unit space $X$. For each $n \in \N$, we consider the cardinality of the transverse support $|X_{z_n}|$. We can partition the set of natural numbers into two disjoint subsets based on whether this dispersion grows fast or slow relative to the block dimension:
+\[
+A = \{n \in \N : |X_{z_n}| \ge \sqrt{n}\} \quad \text{and} \quad B = \{n \in \N : |X_{z_n}| < \sqrt{n}\}.
+\]
+Since $\N = A \cup B$ is infinite, at least one of these two subsets must be infinite. 
+
+If $A$ is infinite, we can extract a strictly increasing subsequence $(n_k)_{k \in \N}$ such that $n_k \in A$ for all $k$. Since $n_k \ge k$, the corresponding blocks satisfy $\dim(K_{z_{n_k}}) \ge n_k \ge k$ and $|X_{z_{n_k}}| \ge \sqrt{n_k} \ge \sqrt{k}$. By restricting our attention to this subsequence and simply re-indexing $k$ as $n$, we obtain a sequence where $|X_{z_n}| \ge \sqrt{n}$ for all $n$. 
+
+Conversely, if $A$ is finite, then $B$ must contain all integers greater than some integer $N$. By discarding the first $N$ terms of our sequence and shifting the index, we obtain a sequence where $\dim(K_{z_n}) \ge n$ and $|X_{z_n}| < \sqrt{n}$ strictly holds for all $n$.
+
+Therefore, by passing to an appropriate subsequence and re-indexing if necessary, we may assume without loss of generality that our sequence $(z_n)$ satisfies exactly one of the following two uniform conditions for all $n$:
+
+\begin{itemize}
+    \item \textbf{Case 1 (Transverse Dispersion):} For every $n$, $|X_{z_n}| \ge \sqrt{n}$.
+    \item \textbf{Case 2 (Isotropy Concentration):} For every $n$, $|X_{z_n}| < \sqrt{n}$.
+\end{itemize}
+
+We now show that both cases lead to an analytic contradiction.
+
+\medskip
+\noindent
+\textbf{Case 1: Transverse dispersion ($|X_{z_n}| \ge \sqrt{n}$).} \\
+Let $m_n = \lfloor \sqrt{n} \rfloor$. We can choose $m_n$ mutually distinct points $y_{n,1}, \dots, y_{n, m_n} \in X_{z_n}$. Choose a unit vector $\eta_{n,i} \in E_{z_n, y_{n,i}}$ for each $i = 1, \dots, m_n$.
+Define the uniformly superposed vector $\xi_n = \frac{1}{\sqrt{m_n}} \sum_{i=1}^{m_n} \eta_{n,i} \in K_{z_n}$, and let $T_n = |\xi_n\rangle\langle\eta_{n,1}| \in B(K_{z_n})$. Since each $T_n$ is strictly contained in a distinct central block, the operators act on mutually orthogonal subspaces, and therefore $T := \bigoplus_n T_n \in M$.
+
+Fix $L \in \N$ and suppose there is $T_f \in C^{(L)}(G,\Sigma)$ approximating $T$. The vector $T_f \eta_{n,1}$ is supported on at most $L$ direct summands of $H = \bigoplus H_x$. On the other hand, $T \eta_{n,1} = \xi_n$ is equally distributed over $m_n$ mutually orthogonal spaces. 
+The orthogonal projection of $\xi_n$ onto any subspace spanned by at most $L$ fibers $H_x$ has norm squared at most $L/m_n$. Therefore:
+\[
+\|(T - T_f)\eta_{n,1}\| \ge 1 - \sqrt{\frac{L}{m_n}}.
+\]
+As $n \to \infty$, we have $m_n \to \infty$, so $\|T - T_f\| \ge 1$. Since $C_c(G,\Sigma)$ is dense in $M$, this is a contradiction.
+
+\medskip
+\noindent
+\textbf{Case 2: Isotropy concentration ($|X_{z_n}| < \sqrt{n}$).} \\
+Recall that $\dim(K_{z_n}) = \sum_{x \in X_{z_n}} \dim(E_{z_n, x}) \ge n$. Since this sum contains strictly fewer than $\sqrt{n}$ terms, the Pigeonhole Principle implies that there exists at least one point $x_n \in X_{z_n}$ where the dimension of the fiber satisfies $D_n := \dim(E_{z_n, x_n}) \ge \frac{n}{\sqrt{n}} = \sqrt{n}$.
+    
+This large fiber corresponds to a matrix von Neumann sub-algebra $M_{D_n}(\mathbb{C})$ embedded inside the corner $p_{x_n} M p_{x_n} \cong C_r^*(G_{x_n}^{x_n}, \Sigma_{x_n})$. 
+The reduced twisted $C^*$-algebra of a discrete group possesses a canonical faithful normal tracial state $\tau_n$, defined on finite sums by $\tau_n(\sum c_g \lambda_g) = c_e$. This trace induces the standard $2$-norm on the corner: $\|a\|_2 = \sqrt{\tau_n(a^*a)}$. For an element supported on finitely many group elements, $\| \sum c_g \lambda_g \|_2 = (\sum |c_g|^2)^{1/2}$.
+    
+Let $W_n$ be a minimal projection in the sub-algebra $M_{D_n}(\mathbb{C})$. The identity of $M_{D_n}(\mathbb{C})$ can be partitioned into $D_n$ mutually orthogonal equivalent copies of $W_n$. Because the trace of the identity is at most $1$, we have $D_n \tau_n(W_n) \le 1$, which implies $\tau_n(W_n) \le \frac{1}{D_n}$. Consequently, its $2$-norm is vanishingly small: $\|W_n\|_2 \le \frac{1}{\sqrt{D_n}}$, even though its operator norm is precisely $\|W_n\|_{op} = 1$.
+    
+Define $T = \bigoplus_n W_n \in M$. Suppose there exists a global element $A \in C^{(L)}(G, \Sigma)$ such that $\|T - A\|_{op} < \epsilon$. 
+When compressed to the isotropy group at $x_n$, the restricted element $A_n := p_{x_n} A p_{x_n}$ is supported on at most $L$ elements of $G_{x_n}^{x_n}$, so we can write $A_n = \sum_{j=1}^k c_j \lambda(g_j)$ with $k \le L$. 
+    
+The operator norm of $A_n$ is bounded by the $\ell^1$-norm of its coefficients. Applying the Cauchy-Schwarz inequality in $\mathbb{R}^k$, we obtain a rigid constraint between the $C^*$-norm and the $2$-norm:
+\[
+\|A_n\|_{op} \le \sum_{j=1}^k |c_j| \cdot 1 \le \sqrt{k} \left( \sum_{j=1}^k |c_j|^2 \right)^{1/2} \le \sqrt{L} \|A_n\|_2.
+\]
+
+Because $\|T - A\|_{op} < \epsilon$, the compression satisfies $\|W_n - A_n\|_{op} \le \|T - A\|_{op} < \epsilon$. This implies $\|A_n\|_{op} \ge \|W_n\|_{op} - \epsilon = 1 - \epsilon$.
+Furthermore, since the $2$-norm is dominated by the operator norm, we also have $\|W_n - A_n\|_2 < \epsilon$. Thus:
+\[
+\|A_n\|_2 \le \|W_n\|_2 + \epsilon \le \frac{1}{\sqrt{D_n}} + \epsilon.
+\]
+Substituting these bounds into our Cauchy-Schwarz constraint yields:
+\[
+1 - \epsilon \le \sqrt{L} \left( \frac{1}{\sqrt{D_n}} + \epsilon \right).
+\]
+Since $D_n \ge \sqrt{n} \to \infty$, taking the limit as $n \to \infty$ forces $1 - \epsilon \le \sqrt{L} \epsilon$, which implies $\epsilon \ge \frac{1}{1 + \sqrt{L}}$.
+Choosing any initial approximation error $0 < \epsilon < \frac{1}{1 + \sqrt{L}}$ results in an absolute contradiction. Thus, $T$ cannot be generated by elements of uniformly finite propagation.
+
+\medskip
+Since all possible scenarios lead to an analytic contradiction, we conclude that $\sup_z \dim(K_z) < \infty$, finishing the proof.
+\end{proof}
+
+\section{Main theorem}
+
+\begin{theorem}
+Let $M$ be an atomic von Neumann algebra. The following are equivalent:
+\begin{enumerate}
+\item $M \cong C_r^*(G,\Sigma)$ for some locally compact Hausdorff étale groupoid $(G,\Sigma)$;
+\item $n(M) < \infty$, that is, $M$ has uniformly bounded multiplicity.
+\end{enumerate}
+
+Moreover, if $n(M) < \infty$, then $M$ is isomorphic to $C_r^*(G)$ for a principal, compact, Hausdorff, étale groupoid $G$ (with trivial twist), whose unit space is extremely disconnected.
+\end{theorem}
+\begin{proof}
+$(1 \Rightarrow 2)$: This is precisely Theorem~\ref{thm:obstruction}.
+
+$(2 \Rightarrow 1)$: Assume $n(M) < \infty$. Write
+\[
+M \cong \prod_{k=1}^n \ell^\infty(Z_k) \otimes M_k(\C),
+\]
+where $Z_k = \{z : \dim(K_z) = k\}$.
+For each $k$, consider the Stone--\v{C}ech compactification $\beta Z_k$, so that
+$\ell^\infty(Z_k) \cong C(\beta Z_k)$.
+
+Define a groupoid
+\[
+G_k := \beta Z_k \times \{1,\dots,k\} \times \{1,\dots,k\},
+\]
+with the product topology, where $\{1,\dots,k\} \times \{1,\dots,k\}$ is viewed as the pair groupoid.
+Then $G_k$ is a compact, étale, principal groupoid, and
+\[
+C_r^*(G_k) \cong C(\beta Z_k) \otimes M_k(\C) \cong \ell^\infty(Z_k) \otimes M_k(\C).
+\]
+
+Let $G = \bigsqcup_{k=1}^n G_k$. Then $G$ is again a compact, étale, principal groupoid, and
+\[
+C_r^*(G) \cong \prod_{k=1}^n C_r^*(G_k) \cong M.
+\]
+The unit space is $G^{(0)} = \bigsqcup_{k=1}^n \beta Z_k \times \{1,\dots,k\}$.
+\end{proof}
+
+\section{Examples}
+
+We illustrate the main theorem with some natural classes of atomic von Neumann algebras.
+
+\begin{example}[Infinite-dimensional factor]
+Let $H$ be an infinite-dimensional Hilbert space and consider
+\[
+M = B(H).
+\]
+Then $M$ is an atomic von Neumann algebra with trivial center, so its central decomposition consists of a single summand:
+$M \cong B(H)$. Hence $n(M) = \dim(H) = \infty$.
+By the main theorem, $M$ cannot be realized as a reduced $C^*$-algebra of an étale groupoid (twisted or not). This generalizes the specific obstruction constructed in previous approaches.
+\end{example}
+
+\begin{example}[Product of matrix algebras with unbounded size]
+Consider
+\[
+M = \prod_{n \in \mathbb{N}} M_n(\mathbb{C}).
+\]
+This is an atomic von Neumann algebra with central decomposition indexed by $\mathbb{N}$, and fibers $K_n \cong \mathbb{C}^n$.
+Thus $n(M) = \sup_{n} n = \infty$.
+It follows that $M$ cannot be realized as a reduced $C^*$-algebra of an étale groupoid.
+\end{example}
+
+\begin{example}[General product]
+More generally, let $(n_k)_{k \in K}$ be a family of natural numbers and consider
+\[
+M = \prod_{k \in K} M_{n_k}(\mathbb{C}).
+\]
+Then $n(M) = \sup_{k \in K} n_k$.
+In particular:
+\begin{itemize}
+\item If $\sup_k n_k < \infty$, then $M$ is isomorphic to a groupoid $C^*$-algebra.
+\item If $\sup_k n_k = \infty$, then $M$ is not isomorphic to any reduced $C^*$-algebra of an étale groupoid.
+\end{itemize}
+\end{example}
+
+\begin{remark}
+The algebra $\prod_{n} M_n(\mathbb{C})$ also plays a central role in the theory of uniform Roe algebras. 
+By the main result from \cite{Ozawa2023}, it does not embed into any uniform Roe algebra of a uniformly locally finite metric space, but does embed into a quasi-local algebra. 
+This is in exact agreement with the obstruction established above, confirming a fundamental parallel: the finite propagation condition governing uniform Roe algebras is deeply analogous to the finite bisection support bounding groupoid dynamics.
+\end{remark}
+
+\bibliographystyle{alphaurl}
+\bibliography{refs}
+
+\end{document}
